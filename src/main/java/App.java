@@ -10,30 +10,17 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class App implements ActionListener {
-    private JFrame frame;
     public static final String COUNTRY = "US";
     public static final String ZIPCODE = "98007";
     public static String URL = "http://www.islamicfinder.us/index.php/api/prayer_times/" + "?country=" + COUNTRY + "&zipcode=" + ZIPCODE;
     public static final String[] PRAYER_NAMES = {"Fajr", "Sunrise", "Dhuhr", "Asr", "Maghreb", "Isha"};
-    public static JLabel[] jalebis = new JLabel[PRAYER_NAMES.length];
     public static final String LOADING_MESSAGE = "Loading...";
     public static final String APP_NAME = "مفتاح الجنة الصلاة";
+
+    private JFrame frame;
+    public JLabel[] jalebis = new JLabel[PRAYER_NAMES.length];
+
     public App() {
-        /*
-        frame = new JFrame("Miftaah Al Jannah");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        String[][] salahs = getTimings();
-        String columns[] = {"Salah", "Athaan"};
-        timingTable = new JTable(salahs, columns);
-        JLabel header = new JLabel("Salaah Timings");
-        scrollPane = new JScrollPane(timingTable);
-        panelMain = new JPanel();
-        panelMain.add(header);
-        panelMain.add(scrollPane);
-        frame.add(panelMain);
-        frame.setSize(450, 400);
-        frame.setVisible(true);
-         */
         setUI();
         getTimings(true);
     }
@@ -46,7 +33,6 @@ public class App implements ActionListener {
 
         JPanel tablePanel = new JPanel();
         tablePanel.setLayout(new GridLayout(6, 2));
-        //tablePanel.setBackground(Color.blue);
         tablePanel.setPreferredSize(new Dimension(100, 100));
 
         // Create JLabels to hold the salah names/times
@@ -68,8 +54,6 @@ public class App implements ActionListener {
         refresh.addActionListener(this);
         refresh.setPreferredSize(new Dimension(50, 50));
 
-
-
         frame.add(tablePanel, BorderLayout.CENTER);
         frame.add(headerLabel, BorderLayout.NORTH);
         frame.add(refresh, BorderLayout.SOUTH);
@@ -81,57 +65,6 @@ public class App implements ActionListener {
         getTimings(false);
     }
 
-
-    private static class Response {
-        public Results results;
-        public Settings settings;
-        public boolean success;
-    }
-    private static class Results {
-        public String Fajr;
-        public String Duha;
-        public String Dhuhr;
-        public String Asr;
-        public String Maghrib;
-        public String Isha;
-    }
-
-    private static class Settings {
-        public String name;
-        public Location location;
-        public double latitude;
-        public double longitude;
-        public String timezone;
-        public int method;
-        public int juristic;
-        public int high_latitude;
-        public FajrRule fajir_rule;
-        public MaghribRule maghrib_rule;
-        public IshaRule isha_rule;
-        public int time_format;
-
-    }
-
-    private static class Location {
-        public String city;
-        public String state;
-        public String country;
-    }
-
-    private static class FajrRule {
-        public int type;
-        public int value;
-    }
-
-    private static class MaghribRule {
-        public int type;
-        public int value;
-    }
-
-    private static class IshaRule {
-        public int type;
-        public int value;
-    }
 
     //TODO - remove firstTime
     // Get timing info and return in correct format
