@@ -43,11 +43,7 @@ public class App implements ActionListener {
         }
 
         // Create header
-        JLabel headerLabel = new JLabel(APP_NAME, SwingConstants.CENTER);
-        headerLabel.setFont(new Font(headerLabel.getFont().getName(), Font.BOLD, 30));
-        headerLabel.setBackground(Color.lightGray);
-        headerLabel.setOpaque(true);
-        headerLabel.setPreferredSize(new Dimension(100, 100));
+        MiftaahHeader headerLabel = new MiftaahHeader();
 
         //jbutton to refresh
         JButton refresh = new JButton("Refresh Timings");
@@ -124,6 +120,4 @@ public class App implements ActionListener {
     public static void main(String[] args) {
         new App();
     }
-
-//pushing onto github
 }
